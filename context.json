@@ -1,0 +1,42 @@
+[
+  {
+    "question": "How do I enable SSL/TLS for the MCP server’s REST API?",
+    "answer": "In your server.properties, set `rest.ssl.enabled=true`, point `rest.ssl.keystore.path` to your JKS keystore, and restart the server."
+  },
+  {
+    "question": "What is the default port for the MCP server’s WebSocket endpoint?",
+    "answer": "By default the WebSocket listens on port 8081; you can override this via `websocket.port` in server.properties."
+  },
+  {
+    "question": "How can I increase maximum heap memory for the MCP JVM?",
+    "answer": "Edit your start script and add `-Xmx4G` (or desired size) to `JAVA_OPTS` before launching the MCP server jar."
+  },
+  {
+    "question": "Which plugin interface handles user-authentication events?",
+    "answer": "Implement the `com.mcp.api.auth.AuthenticationListener` interface and register it via `PluginManager.registerListener(...)`."
+  },
+  {
+    "question": "Where are the server logs written by default?",
+    "answer": "Logs go to `logs/server.log` under your MCP installation directory; you can change this in `log4j2.xml`."
+  },
+  {
+    "question": "How do I perform a rolling restart without dropping connections?",
+    "answer": "Use the built-in `rolling-restart` command in the admin CLI; it spins up a new instance before terminating the old one."
+  },
+  {
+    "question": "What’s the format for custom firewall rules in MCP?",
+    "answer": "Rules are JSON objects with `sourceIp`, `destIp`, `port`, and `action` fields; see examples in `examples/firewall.json`."
+  },
+  {
+    "question": "Can I plug in my own metrics exporter?",
+    "answer": "Yes: implement `MetricsExporter` and drop the JAR in `plugins/metrics/`; the server auto-discovers on startup."
+  },
+  {
+    "question": "How do I change the maximum number of WebSocket connections?",
+    "answer": "Set `websocket.max.connections` in server.properties; defaults to 1024."
+  },
+  {
+    "question": "What thread-pool settings are recommended for high-load environments?",
+    "answer": "For >10k rps, configure `io.thread.pool.size=32` and `worker.pool.size=64` in the performance section."
+  }
+]
